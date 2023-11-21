@@ -1,0 +1,62 @@
+.header {
+  height: 5rem;
+  background-color: #000000;
+  color: #fff;
+
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.logo {
+  height: 3.2rem;
+  width: fit-content;
+}
+
+.search,
+.cart,
+.left,
+.auth {
+  display: flex;
+  align-items: center;
+}
+
+.login,
+.register {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.6rem;
+  border: none;
+  background-color: transparent;
+  margin-left: 1rem;
+}
+
+.margin-left {
+  margin-left: 1rem;
+}
+
+/* ------- Nav ------- */
+.nav {
+  padding-left: 5rem;
+  padding-right: 5rem;
+
+  /* display: flex; */
+  gap: 1rem;
+
+  height: 5rem;
+  line-height: 5rem;
+
+}
+
+.link {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.link-active {
+  border-bottom: 0.1rem solid #000000;
+}
