@@ -10,6 +10,7 @@ const DatVe = lazy(() => import("../pages/datVe/DatVe"));
 const ThongTin = lazy(() => import('../pages/thongTin/ThongTin'))
 const DangNhap = lazy(() => import('../pages/dangNhap/DangNhap'))
 const DangKy = lazy(() => import('../pages/dangKy/DangKy'))
+const CapNhat = lazy(() => import('../pages/capNhat/CapNhat'))
 
 // ------- Template sẽ rất nhẹ chúng ta không cần lazy load -------
 import HomeTemplate from "../templates/home/home.template";
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "dangKy",
         element: <DangKy />,
+      },
+      {
+        path: "capNhat",
+        element: <CapNhat />,
       },
     ],
   },
