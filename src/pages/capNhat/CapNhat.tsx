@@ -1,22 +1,13 @@
 import { Col, Input, Row } from "antd";
 import * as S from "./style";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Y from "yup";
-import { signUp } from "src/services";
+import { getProfile, signUp, upDating } from "src/services";
 
-export default function DangKy() {
+export default function CapNhat() {
   const navigate = useNavigate();
-
-  // type TDangKy = {
-  //   email: string;
-  //   hoTen: string;
-  //   soDt: string;
-  //   taiKhoan: string;
-  //   matKhau: string;
-  //   xnMatKhau: string;
-  // };
 
   const validationSchema = Y.object({
     email: Y.string()
@@ -41,6 +32,21 @@ export default function DangKy() {
     ),
   });
 
+  const [profile, setProfile] = useState({
+    email: "",
+    hoTen: "",
+    soDT: "",
+    taiKhoan: "",
+    matKhau: "",
+    thongTinDatVe: [],
+  });
+
+  useEffect(() => {
+    getProfile().then((resp) => {
+      setProfile(resp);
+    });
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -64,20 +70,59 @@ export default function DangKy() {
         maNhom: values.xnMatKhau,
       };
 
-      signUp(payload).then((resp) => {
+      upDating(payload).then((resp) => {
+        console.log({ resp });
         navigate("/login");
       });
+      // signUp(payload).then((resp) => {
+      // });
     },
   });
   return (
     <>
-      <S.H2>Đăng ký</S.H2>
+      <S.H2>Cập Nhật</S.H2>
       <form onSubmit={formik.handleSubmit}>
         <S.Form>
           <Row gutter={16}>
             <Col span={12}>
+              <label htmlFor="email">Email:</label>
+              <Input
+                id="email"
+                {...formik.getFieldProps("email")}
+                placeholder={profile.email}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <p className="text-red-800 text-xl">{formik.errors.email}</p>
+              )}
+
+              <label htmlFor="hoTen">Họ tên:</label>
+              <Input
+                id="hoTen"
+                {...formik.getFieldProps("hoTen")}
+                placeholder={profile.hoTen}
+              />
+              {formik.touched.hoTen && formik.errors.hoTen && (
+                <p className="text-red-800 text-xl">{formik.errors.hoTen}</p>
+              )}
+
+              <label htmlFor="soDt">Số điện thoại:</label>
+              <Input
+                id="soDt"
+                {...formik.getFieldProps("soDt")}
+                placeholder={profile.soDT}
+              />
+              {formik.touched.soDt && formik.errors.soDt && (
+                <p className="text-red-800 text-xl">{formik.errors.soDt}</p>
+              )}
+            </Col>
+
+            <Col span={12}>
               <label htmlFor="taiKhoan">Tài khoản:</label>
-              <Input id="taiKhoan" {...formik.getFieldProps("taiKhoan")} />
+              <Input
+                id="taiKhoan"
+                {...formik.getFieldProps("taiKhoan")}
+                placeholder={profile.taiKhoan}
+              />
               {formik.touched.taiKhoan && formik.errors.taiKhoan && (
                 <p className="text-red-800 text-xl">{formik.errors.taiKhoan}</p>
               )}
@@ -89,50 +134,19 @@ export default function DangKy() {
               )}
 
               <label htmlFor="xnMatKhau">Nhập lại mật khẩu:</label>
-              <Input id="xnMatKhau" {...formik.getFieldProps("xnMatKhau")} />
+              <Input
+                id="xnMatKhau"
+                {...formik.getFieldProps("xnMatKhau")}
+                placeholder=""
+              />
               {formik.touched.xnMatKhau && formik.errors.xnMatKhau && (
                 <p className="text-red-800 text-xl">
                   {formik.errors.xnMatKhau}
                 </p>
               )}
-            </Col>
-
-            <Col span={12}>
-              <label htmlFor="email">Email:</label>
-              <Input id="email" {...formik.getFieldProps("email")} />
-              {formik.touched.email && formik.errors.email && (
-                <p className="text-red-800 text-xl">{formik.errors.email}</p>
-              )}
-
-              <label htmlFor="hoTen">Họ tên:</label>
-              <Input id="hoTen" {...formik.getFieldProps("hoTen")} />
-              {formik.touched.hoTen && formik.errors.hoTen && (
-                <p className="text-red-800 text-xl">{formik.errors.hoTen}</p>
-              )}
-
-              <label htmlFor="soDt">Số điện thoại:</label>
-              <Input id="soDt" {...formik.getFieldProps("soDt")} />
-              {formik.touched.soDt && formik.errors.soDt && (
-                <p className="text-red-800 text-xl">{formik.errors.soDt}</p>
-              )}
-
-              <Row
-                style={{
-                  maxWidth: "50%",
-                  textAlign: "right",
-                  marginTop: "1rem",
-                }}
-              >
-                <Col span={12}>
-                  <S.Button type="submit">Đăng ký</S.Button>
-                </Col>
-
-                <Col span={12}>
-                  <Link to={"/dangNhap"}>
-                    <S.Button type="submit">Đăng nhập</S.Button>
-                  </Link>
-                </Col>
-              </Row>
+              <Link to={"/dangNhap"}>
+                <S.Button type="submit">Cập nhật</S.Button>
+              </Link>
             </Col>
           </Row>
         </S.Form>

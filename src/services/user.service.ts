@@ -17,9 +17,6 @@ export const signUp = async (data: TDSignUp) => {
       method: "POST",
       data,
     });
-    // fetch: body
-    // axios: data
-
     return resp.data.content;
   } catch (error: any) {
     throw new Error(error);
@@ -43,11 +40,33 @@ export const signIn = async (data: TDSignIn) => {
   }
 };
 
-// Users/getProfile
+// /QuanLyNguoiDung/ThongTinTaiKhoan
 export const getProfile = async () => {
   try {
     const resp = await axiosAuth_Movie("/QuanLyNguoiDung/ThongTinTaiKhoan", {
       method: "POST",
+    });
+    return resp.data.content;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+// QuanLyNguoiDung/CapNhatThongTinNguoiDung
+type TDUpdating = {
+  taiKhoan: string;
+  matKhau: string;
+  email: string;
+  soDt: string;
+  maNhom: string;
+  hoTen: string;
+};
+
+export const upDating = async (data: TDUpdating) => {
+  try {
+    const resp = await axiosAuth_Movie("/QuanLyNguoiDung/ThongTinTaiKhoan", {
+      method: "PUT",
+      data,
     });
     return resp.data.content;
   } catch (error: any) {

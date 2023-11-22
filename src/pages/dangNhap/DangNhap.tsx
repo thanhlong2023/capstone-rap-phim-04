@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Col, Input, Row } from "antd";
 import * as S from "./style";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -66,12 +66,12 @@ export default function DangNhap() {
           }}
         >
           <Col span={13}>
-            <Button htmlType="submit">Đăng nhập</Button>
+            <S.Button type="submit">Đăng nhập</S.Button>
           </Col>
 
           <Col span={2}>
             <Link to={"/dangKy"}>
-              <Button htmlType="submit">Đăng ký</Button>
+              <S.Button type="submit">Đăng ký</S.Button>
             </Link>
           </Col>
         </Row>

@@ -2,23 +2,16 @@ import { Col, Input, Row } from "antd";
 import * as S from "./style";
 import React, { useEffect, useState } from "react";
 import { getProfile } from "src/services";
+import { Link } from "react-router-dom";
 
 export default function ThongTin() {
-  // type FieldType = {
-  //   email?: string;
-  //   name?: string;
-  //   phone?: string;
-  //   account?: string;
-  //   password?: string;
-  //   remember?: string;
-  // };
-
   const [profile, setProfile] = useState({
     email: "",
     hoTen: "",
     soDT: "",
     taiKhoan: "",
     matKhau: "",
+    thongTinDatVe: [],
   });
 
   useEffect(() => {
@@ -51,6 +44,9 @@ export default function ThongTin() {
 
               <label htmlFor="matKhau">Mật khẩu:</label>
               <Input type="password" id="matKhau" value={profile.matKhau} />
+              <Link to={"/capNhat"}>
+                <S.Button type="submit">Cập nhật</S.Button>
+              </Link>
             </Col>
           </Row>
         </S.Form>
