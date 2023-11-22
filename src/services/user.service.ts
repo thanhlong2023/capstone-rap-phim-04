@@ -1,18 +1,19 @@
 import { getLocal } from "src/utils";
-import { axiosAuth, axiosWithoutAuth } from "./axios.config";
+import { axiosAuth_Movie, axiosWithoutAuth_Movie } from "./axios.config";
 import { ACCESS_TOKEN } from "src/constants";
 
-type TBody = {
+type TDSignUp = {
+  taiKhoan: string;
+  matKhau: string;
   email: string;
-  password: string;
-  name: string;
-  gender: boolean;
-  phone: string;
+  soDt: string;
+  maNhom: string;
+  hoTen: string;
 };
 
-export const signUp = async (data: TBody) => {
+export const signUp = async (data: TDSignUp) => {
   try {
-    const resp = await axiosWithoutAuth("/Users/signup", {
+    const resp = await axiosWithoutAuth_Movie("/QuanLyNguoiDung/DangKy", {
       method: "POST",
       data,
     });
@@ -25,20 +26,17 @@ export const signUp = async (data: TBody) => {
   }
 };
 
-type TDataSignin = {
-  email: string;
-  password: string;
+type TDSignIn = {
+  taiKhoan: string;
+  matKhau: string;
 };
 
-export const signIn = async (data: TDataSignin) => {
+export const signIn = async (data: TDSignIn) => {
   try {
-    const resp = await axiosWithoutAuth("/Users/signin", {
+    const resp = await axiosWithoutAuth_Movie("QuanLyNguoiDung/DangNhap", {
       method: "POST",
       data,
     });
-    // fetch: body
-    // axios: data
-
     return resp.data.content;
   } catch (error: any) {
     throw new Error(error);
@@ -48,12 +46,9 @@ export const signIn = async (data: TDataSignin) => {
 // Users/getProfile
 export const getProfile = async () => {
   try {
-    const resp = await axiosAuth("/Users/getProfile", {
+    const resp = await axiosAuth_Movie("/QuanLyNguoiDung/ThongTinTaiKhoan", {
       method: "POST",
     });
-    // fetch: body
-    // axios: data
-
     return resp.data.content;
   } catch (error: any) {
     throw new Error(error);
