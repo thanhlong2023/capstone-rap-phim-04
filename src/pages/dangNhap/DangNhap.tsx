@@ -35,7 +35,7 @@ export default function DangNhap() {
     onSubmit: (values) => {
       signIn(values).then((resp) => {
         saveLocal(ACCESS_TOKEN, resp.accessToken);
-        navigate(-1);
+        navigate("/");
         dispatch(
           loginSuccess({
             taiKhoan: resp.taiKhoan,
@@ -70,7 +70,7 @@ export default function DangNhap() {
           </Col>
 
           <Col span={2}>
-            <Link to={"/register"}>
+            <Link to={"/dangKy"}>
               <Button htmlType="submit">Đăng ký</Button>
             </Link>
           </Col>

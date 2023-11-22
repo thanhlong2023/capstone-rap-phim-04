@@ -57,7 +57,7 @@ function Header() {
               when={login.taiKhoan}
               fallback={
                 <Link
-                  to="login"
+                  to="dangNhap"
                   className={css.login}
                   style={{
                     fontWeight: "700",
@@ -69,7 +69,7 @@ function Header() {
                 </Link>
               }
             >
-              <Link to="profile">{login.taiKhoan}</Link>
+              <Link to="thongTin">{login.taiKhoan}</Link>
             </Show>
 
             <Show
@@ -77,7 +77,7 @@ function Header() {
               fallback={
                 <button
                   onClick={() => {
-                    navigate("login");
+                    navigate("dangNhap");
 
                     removeLocal(ACCESS_TOKEN);
 
@@ -98,7 +98,7 @@ function Header() {
               }
             >
               <Link
-                to="register"
+                to="dangKy"
                 className={css.register}
                 style={{ fontWeight: "700", padding: "0 2rem", color: "yellow" }}
               >

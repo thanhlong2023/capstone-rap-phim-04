@@ -23,7 +23,7 @@ export default function ThongTin() {
 
   useEffect(() => {
     getProfile().then((resp) => {
-      // console.log({ resp });
+      console.log({ resp });
       setProfile(resp);
     });
   }, []);
@@ -36,7 +36,7 @@ export default function ThongTin() {
           <Row gutter={16}>
             <Col span={12}>
               <label htmlFor="email">Email:</label>
-              <Input id="email" value={profile.email}/>
+              <Input id="email" value={profile.email} />
 
               <label htmlFor="hoTen">Họ tên:</label>
               <Input id="hoTen" value={profile.hoTen} />
@@ -51,14 +51,6 @@ export default function ThongTin() {
 
               <label htmlFor="matKhau">Mật khẩu:</label>
               <Input type="password" id="matKhau" value={profile.matKhau} />
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                id="matKhau"
-              >
-                <span>Hiden</span>
-              </button>
-
             </Col>
           </Row>
         </S.Form>

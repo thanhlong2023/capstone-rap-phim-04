@@ -128,7 +128,7 @@ export default function DangKy() {
                 </Col>
 
                 <Col span={12}>
-                  <Link to={"/login"}>
+                  <Link to={"/dangNhap"}>
                     <Button htmlType="submit">Đăng nhập</Button>
                   </Link>
                 </Col>
