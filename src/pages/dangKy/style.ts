@@ -13,3 +13,10 @@ export const Form = styled.div`
   justify-content: center;
 `;
 
+export const Button = styled.button`
+  padding: 0.5rem 1.5rem;
+  border: 0.1rem solid blue;
+  border-radius: 1rem;
+  font-size: 1.3rem;
+  margin: 1.5rem auto;
+`;
