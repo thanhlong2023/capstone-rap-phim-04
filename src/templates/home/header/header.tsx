@@ -27,12 +27,11 @@ function Header() {
   return (
     <>
       <header className={cx("header", "flex")}>
-        <img className={cx("logo")} src={logo} />
+        <Link to={""}>
+          <img className={cx("logo")} src={logo} />
+        </Link>
         <nav className={cx("nav", "flex")}>
-          <NavLink
-            className={cx("link", "link-active")}
-            to={"/"}
-          >
+          <NavLink className={cx("link", "link-active")} to={"/"}>
             Home
           </NavLink>
           <NavLink className={cx("link")} to={"/"}>
@@ -44,7 +43,6 @@ function Header() {
           <NavLink className={cx("link")} to={"/"}>
             Ứng dụng
           </NavLink>
-          
         </nav>
         <div className={css.left}>
           <div className={css.cart}>
@@ -53,7 +51,7 @@ function Header() {
           </div>
 
           <div className={cx("auth", "margin-left")}>
-          <Show
+            <Show
               when={login.taiKhoan}
               fallback={
                 <Link
@@ -100,7 +98,11 @@ function Header() {
               <Link
                 to="dangKy"
                 className={css.register}
-                style={{ fontWeight: "700", padding: "0 2rem", color: "yellow" }}
+                style={{
+                  fontWeight: "700",
+                  padding: "0 2rem",
+                  color: "yellow",
+                }}
               >
                 Đăng ký
               </Link>
