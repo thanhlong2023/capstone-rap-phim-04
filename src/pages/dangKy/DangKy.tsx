@@ -65,7 +65,7 @@ export default function DangKy() {
       };
 
       signUp(payload).then((resp) => {
-        navigate("/login");
+        navigate("/dangNhap");
       });
     },
   });
