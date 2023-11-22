@@ -34,12 +34,6 @@ export const axiosWithoutAuth_Movie = axios.create({
   timeout: 180_000,
 });
 
-export const axiosAuth_Movie = axios.create({
-  baseURL: MOVIE_URL,
-
-  timeout: 180_000,
-});
-
 axiosWithoutAuth_Movie.interceptors.request.use(
   (config) => {
     config.headers.TokenCybersoft = TOKEN_CYBER;
@@ -47,6 +41,26 @@ axiosWithoutAuth_Movie.interceptors.request.use(
   },
   (err) => {
     console.log(err);
+    return Promise.reject(err);
+  },
+);
+
+export const axiosAuth_Movie = axios.create({
+  baseURL: MOVIE_URL,
+
+  timeout: 180_000,
+});
+
+axiosAuth_Movie.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = `Bearer ${getLocal(ACCESS_TOKEN)}`;
+
+    // Token Cyber
+    config.headers.TokenCybersoft = TOKEN_CYBER;
+
+    return config;
+  },
+  (err) => {
     return Promise.reject(err);
   },
 );

@@ -6,10 +6,11 @@ import { createBrowserRouter } from "react-router-dom";
 // ------- Lazy Load --------
 const Home = lazy(() => import("../pages/home/home"));
 const Detail = lazy(() => import("../pages/detail/detail"));
-const Login = lazy(() => import("../pages/login/login"));
 const DatVe = lazy(() => import("../pages/datVe/DatVe"));
-const Profile = lazy(() => import("../pages/profile/profile"));
-const Register = lazy(() => import("../pages/register/register"));
+const ThongTin = lazy(() => import('../pages/thongTin/ThongTin'))
+const DangNhap = lazy(() => import('../pages/dangNhap/DangNhap'))
+const DangKy = lazy(() => import('../pages/dangKy/DangKy'))
+
 // ------- Template sẽ rất nhẹ chúng ta không cần lazy load -------
 import HomeTemplate from "../templates/home/home.template";
 import AuthTemplate from "../templates/auth/auth.template";
@@ -43,16 +44,16 @@ export const router = createBrowserRouter([
         element: <DatVe />,
       },
       {
-        path: "profile",
-        element: <Profile />,
+        path: "thongTin",
+        element: <ThongTin />,
       },
       {
-        path: "login",
-        element: <Login />,
+        path: "dangNhap",
+        element: <DangNhap />,
       },
       {
-        path: "register",
-        element: <Register />,
+        path: "dangKy",
+        element: <DangKy />,
       },
     ],
   },
