@@ -11,18 +11,18 @@ import { useEffect } from "react";
 import { getLocal } from "./utils";
 import { ACCESS_TOKEN } from "./constants";
 import { getProfile } from "./services";
-import { loginSuccess } from "src/redux/userSlice";
+import { loginSuccess } from "src/redux/userSetting";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const atk = getLocal(ACCESS_TOKEN);
-    if (atk) {
+    const accessToken = getLocal(ACCESS_TOKEN);
+    if (accessToken) {
       getProfile().then((resp) => {
         dispatch(
           loginSuccess({
-            email: resp.email,
+            taiKhoan: resp.taiKhoan,
           }),
         );
       });

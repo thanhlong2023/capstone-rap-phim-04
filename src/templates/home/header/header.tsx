@@ -3,14 +3,7 @@ import css from "./header.module.css";
 import clsx from "classnames/bind";
 const cx = clsx.bind(css);
 // --------------------------------
-
-// relative: tương đối.
-// import logo from "../../../assets/icons/logo.svg";
-
-// absolute: tuyệt đối.
 import logo from "src/assets/icons/logo.svg";
-// import IconCart from "src/assets/icons/icon-cart";
-// import IconSearch from "src/assets/icons/icon-search";
 
 import { IconCart, IconSearch } from "src/assets/icons";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -18,7 +11,7 @@ import { useAppSelector } from "src/redux/hooks";
 import { removeLocal } from "src/utils";
 import { ACCESS_TOKEN } from "src/constants";
 import { useDispatch } from "react-redux";
-import { loginSuccess, setLogin } from "src/redux/userSlice";
+import { loginSuccess, setLogin } from "src/redux/userSetting";
 
 function Show({ when, fallback, children }: any) {
   return when ? children : fallback;
@@ -60,19 +53,27 @@ function Header() {
           </div>
 
           <div className={cx("auth", "margin-left")}>
-            <Show
-              when={login.email}
+          <Show
+              when={login.taiKhoan}
               fallback={
-                <Link to="login" className={css.login}>
-                  Login
+                <Link
+                  to="login"
+                  className={css.login}
+                  style={{
+                    fontWeight: "700",
+                    padding: "0 2rem",
+                    color: "green",
+                  }}
+                >
+                  Đăng nhập
                 </Link>
               }
             >
-              <Link to="profile">{login.email}</Link>
+              <Link to="profile">{login.taiKhoan}</Link>
             </Show>
 
             <Show
-              when={!login.email}
+              when={!login.taiKhoan}
               fallback={
                 <button
                   onClick={() => {
@@ -82,18 +83,26 @@ function Header() {
 
                     dispatch(
                       setLogin({
-                        email: "",
+                        taiKhoan: "",
                       }),
                     );
                   }}
+                  style={{
+                    fontWeight: "700",
+                    padding: "0 2rem",
+                    color: "red",
+                  }}
                 >
-                  
-                  Logout
+                  Đăng xuất
                 </button>
               }
             >
-              <Link to="register" className={css.register}>
-                Register
+              <Link
+                to="register"
+                className={css.register}
+                style={{ fontWeight: "700", padding: "0 2rem", color: "yellow" }}
+              >
+                Đăng ký
               </Link>
             </Show>
           </div>
