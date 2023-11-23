@@ -9,7 +9,7 @@ function Footer() {
         textAlign: "center",
       }}
     >
-      © 2022 Cybersoft All Rights Reserved | Design Theme by Cao Thành Long.
+      © 2022 Cybersoft All Rights Reserved | Design Theme by myTeam.
     </footer>
   );
 }
